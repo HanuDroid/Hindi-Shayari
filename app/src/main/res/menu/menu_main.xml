@@ -1,0 +1,46 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Main">
+
+    <item android:icon="@mipmap/ic_share"
+        android:id="@+id/Share"
+        app:showAsAction="ifRoom"
+        android:title="Share">
+    </item>
+
+    <item android:icon="@mipmap/add_content"
+        android:id="@+id/Upload"
+        app:showAsAction="ifRoom"
+        android:title="Upload">
+    </item>
+
+    <item android:icon="@mipmap/ic_rate"
+        android:id="@+id/Rate"
+        app:showAsAction="ifRoom"
+        android:title="Rate this Shayari">
+    </item>
+
+    <item android:icon="@android:drawable/ic_menu_preferences"
+        android:id="@+id/Settings"
+        app:showAsAction="ifRoom"
+        android:title="Settings">
+    </item>
+
+    <item android:icon="@mipmap/about"
+        android:id="@+id/About"
+        app:showAsAction="ifRoom"
+        android:title="About">
+    </item>
+
+    <item android:icon="@mipmap/help"
+        android:id="@+id/Help"
+        app:showAsAction="ifRoom"
+        android:title="Help">
+    </item>
+
+    <item android:id="@+id/ShowEula"
+        android:title="Terms / Conditions">
+    </item>
+
+</menu>
