@@ -1,10 +1,13 @@
 package com.ayansh.hindishayari.android;
 
 import android.content.Context;
+import android.os.Bundle;
 
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 /**
  * Created by Varun Verma on 24 Nov 2016.
@@ -13,9 +16,11 @@ import com.google.android.gms.ads.InterstitialAd;
 public class MyInterstitialAd {
 
     private static InterstitialAd mInterstitialAd;
-    private static String pub_id = "ca-app-pub-4571712644338430/7743583104";
+    private static String pub_id = "ca-app-pub-4571712644338430/2099929821";
 
     public static InterstitialAd getInterstitialAd(Context context){
+
+        MobileAds.initialize(context, "ca-app-pub-4571712644338430~6266849909");
 
         if(mInterstitialAd == null){
 
@@ -40,7 +45,11 @@ public class MyInterstitialAd {
             return;
         }
 
+        Bundle extras = new Bundle();
+        extras.putString("max_ad_content_rating", "G");
+
         AdRequest adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
 

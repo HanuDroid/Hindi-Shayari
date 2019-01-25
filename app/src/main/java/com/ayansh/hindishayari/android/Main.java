@@ -22,8 +22,10 @@ import android.widget.LinearLayout;
 import com.ayansh.hanudroid.Application;
 import com.ayansh.hanudroid.HanuFragmentInterface;
 import com.ayansh.hanudroid.Post;
+import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.File;
@@ -43,6 +45,8 @@ public class Main extends AppCompatActivity implements PostListFragment.Callback
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, "ca-app-pub-4571712644338430~6266849909");
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -116,8 +120,11 @@ public class Main extends AppCompatActivity implements PostListFragment.Callback
     private void startMainScreen() {
 
         // Show Ad.
+        Bundle extras = new Bundle();
+        extras.putString("max_ad_content_rating", "G");
 
         AdRequest adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .addTestDevice("8C44DABF2A81BBE341ECAFD882A49F09").build();
 
