@@ -48,14 +48,15 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
+        Application app = Application.getApplicationInstance();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean preference_value;
+
         if(key.contentEquals("show_memes")){
 
-            Application app = Application.getApplicationInstance();
+            preference_value = sharedPref.getBoolean("show_memes",true);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean show_memes = sharedPref.getBoolean("show_memes",true);
-
-            if(show_memes){
+            if(preference_value){
                 app.addSyncCategory("Meme");
             }
             else{
@@ -66,12 +67,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         if(key.contentEquals("love_shayari")){
 
-            Application app = Application.getApplicationInstance();
+            preference_value = sharedPref.getBoolean("love_shayari",true);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean show_memes = sharedPref.getBoolean("show_memes",true);
-
-            if(show_memes){
+            if(preference_value){
                 app.addSyncCategory("Love Shayari");
             }
             else{
@@ -82,12 +80,9 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
         if(key.contentEquals("adult_shayari")){
 
-            Application app = Application.getApplicationInstance();
+            preference_value = sharedPref.getBoolean("adult_shayari",true);
 
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean show_memes = sharedPref.getBoolean("show_memes",true);
-
-            if(show_memes){
+            if(preference_value){
                 app.addSyncCategory("Adult Shayari");
             }
             else{

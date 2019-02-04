@@ -159,7 +159,8 @@ public class Main extends AppCompatActivity implements PostListFragment.Callback
         } else {
             // Create view Pager
             viewPager = (ViewPager) findViewById(R.id.post_pager);
-
+            viewPager.setClipToPadding(false);
+            viewPager.setPageMargin(-50);
             pagerAdapter = new PostPagerAdapter(getSupportFragmentManager(),app.getPostList().size());
             viewPager.setAdapter(pagerAdapter);
         }
@@ -204,66 +205,6 @@ public class Main extends AppCompatActivity implements PostListFragment.Callback
                 info.putExtra("File", "about.html");
                 info.putExtra("Title", "About: ");
                 Main.this.startActivity(info);
-                break;
-
-            case R.id.Rate:
-                if(dualPane){
-                    id = fragmentUI.getSelectedItem();
-                }
-                else{
-                    id = viewPager.getCurrentItem();
-                }
-                Intent rate = new Intent(Main.this, PostRating.class);
-                rate.putExtra("PostIndex", id);
-                Main.this.startActivity(rate);
-                break;
-
-            case R.id.Share:
-                try{
-                    if(dualPane){
-                        id = fragmentUI.getSelectedItem();
-                    }
-                    else{
-                        id = viewPager.getCurrentItem();
-                    }
-                    Post post = app.getPostList().get(id);
-
-                    boolean isMeme = post.hasCategory("Meme");
-                    if(isMeme){
-                        File image_folder = new File(app.getFilesDirectory(),String.valueOf(post.getId()));
-                        File[] file_list = image_folder.listFiles();
-                        File image_file = file_list[0];
-
-                        Uri uri = FileProvider.getUriForFile(this, getPackageName(), image_file);
-                        Intent intent = ShareCompat.IntentBuilder.from(this)
-                                .setStream(uri) // uri from FileProvider
-                                .setType("text/html")
-                                .getIntent()
-                                .setAction(Intent.ACTION_SEND) //Change if needed
-                                .setDataAndType(uri, "image/*")
-                                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                        startActivity(Intent.createChooser(intent, "Share with..."));
-                    }
-                    else{
-                        String post_content = post.getContent(true);
-                        post_content += "\n\n via ~ ayansh.com/hs";
-                        Intent send = new Intent(Intent.ACTION_SEND);
-                        send.setType("text/plain");
-                        send.putExtra(Intent.EXTRA_SUBJECT, post.getTitle());
-                        send.putExtra(Intent.EXTRA_TEXT, post_content);
-                        startActivity(Intent.createChooser(send, "Share with..."));
-                    }
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, post.getTitle());
-                    bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "post_share");
-                    app.getFirebaseAnalytics().logEvent(FirebaseAnalytics.Event.SHARE, bundle);
-
-                }catch(Exception e){
-                    Log.e(Application.TAG, e.getMessage(), e);
-                    finish();
-                }
                 break;
 
             case R.id.Upload:

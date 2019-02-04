@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/old_paper"
     tools:context=".Main">
 
     <android.support.v7.widget.Toolbar
@@ -30,6 +30,8 @@
         android:id="@+id/post_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
         android:layout_above="@id/adView" />
 
     <include layout="@layout/swipe_help"
