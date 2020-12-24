@@ -5,7 +5,7 @@
     android:background="@color/old_paper"
     tools:context=".Main">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -24,7 +24,7 @@
         ads:adUnitId="ca-app-pub-4571712644338430/7743583104" >
     </com.google.android.gms.ads.AdView>
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_below="@id/my_toolbar"
         android:id="@+id/post_pager"

@@ -1,16 +1,15 @@
 package com.ayansh.hindishayari.android;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.ShareCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.app.ShareCompat;
+import androidx.core.content.FileProvider;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,14 +20,10 @@ import android.widget.LinearLayout;
 
 import com.ayansh.hanudroid.Application;
 import com.ayansh.hanudroid.HanuFragmentInterface;
-import com.ayansh.hanudroid.Post;
 import com.google.ads.mediation.admob.AdMobAdapter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.analytics.FirebaseAnalytics;
-
-import java.io.File;
 
 public class Main extends AppCompatActivity implements PostListFragment.Callbacks,
         PostDetailFragment.Callbacks{
@@ -89,7 +84,7 @@ public class Main extends AppCompatActivity implements PostListFragment.Callback
             return;
         }
 
-        String swipeHelp = app.getOptions().get("SwipeHelp");
+        String swipeHelp = app.readParameterValue("SwipeHelp");
 
         if(swipeHelp != null && swipeHelp.contentEquals("Skip")){
             // Skip the swipe help
